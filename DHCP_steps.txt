@@ -1,0 +1,33 @@
+First switch:
+
+Click on router
+Go to CLI tab
+Press enter
+
+Commands to enter:
+en
+conf t
+int fa0/0
+ip address 192.168.0.1 255.255.255.0
+no shutdown
+do write memory
+ip dhcp pool net1
+network 192.168.0.1 255.255.255.0
+exit
+
+Second switch:
+
+Click on router
+Go to CLI tab
+Press enter
+
+Commands to enter:
+en
+conf t
+int fa0/1
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+do write memory
+ip dhcp pool net2
+network 192.168.1.1 255.255.255.0
+exit
