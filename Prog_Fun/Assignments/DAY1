@@ -1,0 +1,473 @@
+PROGRAM 1 - Addition of 2 numbers.
+
+#include<stdio.h>
+
+int main()
+{
+	int num1, num2,sum;
+	printf("Enter numbers to add: ");
+	scanf("%d %d", &num1,&num2);
+	
+	sum =  num1+num2;
+	printf("The sum is %d: ",sum);
+
+	return 0;
+}
+
+
+
+
+PROGRAM 2 - Calculate Square and Cube.
+
+#include<stdio.h>
+
+int main()
+{
+	int num, square,cube;
+	printf("Enter number: ");
+	scanf("%d", &num);
+	
+	square =  num*num;
+	cube =  num*num*num;
+	printf("The square is %d and cube is %d ",square,cube);
+
+	return 0;
+}
+
+
+
+
+PROGRAM 3 - Display even odd.
+
+#include<stdio.h>
+
+int main()
+{
+	int num;
+	printf("Enter number: ");
+	scanf("%d", &num);
+	
+	if (num%2==0)
+		printf("The number is even");
+	else
+		printf("The number is odd");
+
+	return 0;
+}
+
+
+
+
+PROGRAM 4 - Positive Negative.
+
+#include<stdio.h>
+
+int main()
+{
+	int num;
+	printf("Enter number: ");
+	scanf("%d", &num);
+	
+	if (num>0)
+		printf("The number is positive");
+	else if (num==0)
+		printf("The number is zero");
+	else
+		printf("The number is negative");
+
+	return 0;
+}
+
+
+
+
+PROGRAM 5 - Display grades.
+
+#include<stdio.h>
+
+int main()
+{
+	int marks;
+	printf("Enter marks: ");
+	scanf("%d", &marks);
+	
+	if (marks>=75)
+		printf("Grade A");
+	if (marks<75 && marks>=55)
+		printf("Grade B");
+	if (marks<55 && marks>=40)
+		printf("Grade C");
+	else
+		printf("FAIL");
+
+	return 0;
+}
+
+
+
+
+PROGRAM 6 - User Ternary operator to check max number.
+
+#include<stdio.h>
+
+int main()
+{
+	int num1,num2;
+	printf("Enter 2 numbers: ");
+	scanf("%d %d", &num1, &num2);
+	
+	printf("Maximum : %d", (num1>num2?num1:num2)); 
+	return 0;
+}
+
+
+
+
+PROGRAM 7 - Menu driven program for arithmetic operation.
+
+#include<stdio.h>
+
+int main()
+{
+	int num1,num2,n;
+	printf("Enter numbers: ");
+	scanf("%d %d", &num1,&num2);
+	
+	printf("Enter case (add-1,sub-2,mul-3,div-4) input: ");
+	scanf("%d", &n);
+	
+	switch (n)
+	{
+		case 1:
+			printf("Addition : %d",num1+num2);
+			break;
+		case 2:
+			printf("Subtraction : %d",num1-num2);
+			break;
+		case 3:
+			printf("Multiplication : %d",num1*num2);
+			break;
+		case 4:
+			printf("Division : %d",num1/num2);
+			break;
+		default:
+			printf("Enter valid case input");
+	}
+
+	return 0;
+}
+
+
+
+
+PROGRAM 8 - Menu driven program to calculate and display area and perimeter for shapes.
+
+
+#include <stdio.h>
+
+int main() {
+    int case_value;
+    float pi = 3.14;
+    printf("Enter the number to calculate area/circumference and perimeter for required shape\n 1:Circle  2:Square  3:Rectangle  4:Triangle\n -->");
+    scanf("%d",&case_value);
+    
+    switch(case_value)
+    {
+        case 1:
+            float radius;
+            float area_c,perimeter_c;
+            printf("Enter the radius of circle : ");
+            scanf("%f", &radius);
+            
+            area_c = pi*radius*radius;
+            perimeter_c = 2*pi*radius;
+            
+            printf("The area of circle is %f and Perimeter is %f",area_c,perimeter_c);
+            
+            break;
+            
+        case 2:
+            float side;
+            float area_s,perimeter_s;
+            printf("Enter the side of square : ");
+            scanf("%f",&side);
+            
+            area_s = side*side;
+            perimeter_s = 4*side;
+            
+            printf("The area of Square is %f and Perimeter is %f",area_s,perimeter_s);
+            
+            break;
+            
+        case 3:
+            float lenght,breadth;
+            float area_r,perimeter_r;
+            printf("Enter the length and breadth of rectangle : ");
+            scanf("%f %f", &lenght,&breadth);
+            
+            area_r = lenght*breadth;
+            perimeter_r = 2*(lenght+breadth);
+            
+            printf("The area of Rectangle is %f and Perimeter is %f",area_r,perimeter_r);
+            
+            break;
+        
+        case 4:
+            float height,breadth_t,a,b,c;
+            float area_t,perimeter_t;
+            printf("Enter the height and breadth of triangle : ");
+            scanf("%f %f", &height,&breadth_t);
+            printf("Enter the 3 leghts of triangle");
+            scanf("%f %f %f", &a,&b,&c);
+            
+            area_t = (0.5)*height*breadth_t;
+            perimeter_t = a+b+c;
+            
+            printf("The area of Triangle is %f and Triangle is %f",area_t,perimeter_t);
+            
+            break;
+            
+        default:
+            printf("Enter valid entry");
+        
+        
+    }
+
+    return 0;
+}
+
+
+
+
+
+---------------------------------------------------------------------------------------
+
+LOOPs
+
+PROGRAM 9 - WAP to accept number from user calculate and display multiplication table.
+
+#include <stdio.h>
+
+int main() {
+    int number,table;
+    printf("Enter number for multiplication table : ");
+    scanf("%d",&number);
+    printf("Multiplication table of %d\n",number);
+    for (int i=1;i<=10;i++)
+    {
+        table=number*i;
+        printf("%d\n",table);
+    }
+    return 0;
+}
+
+
+
+
+PROGRAM 10 - WAP to accept number from user to calculate and display factorial.
+
+#include<stdio.h>
+
+int main()
+{
+	int number, factorial_result,i;
+	printf("Enter a number to calculate factorial: ");
+	scanf("%d", &number);
+	factorial_result=1;
+
+	for(i=0;i<=number+1;i++)
+	{
+		factorial_result = number*factorial_result;
+		number--;
+	}
+
+	printf("Result of factorial= %d ", factorial_result);
+
+	return 0;
+
+}
+
+
+
+
+PROGRAM 11 - Accept number from user to find print reverse of number.
+
+#include <stdio.h>
+
+int main() {
+    int number,reverse=0,remainder;
+    printf("Enter number : ");
+    scanf("%d",&number);
+    while (number!=0)
+    {
+        remainder = number%10;
+        reverse = reverse*10+remainder;
+        number = number/10;
+    }
+    printf("Reversed number : %d",reverse);
+    return 0;
+}
+
+
+
+
+PROGRAM 12 - WAP to display alphabets AZ and a-z in parallel order. 
+
+#include<stdio.h>
+
+int main()
+{
+	int capital,small;
+	capital = 65;
+	small = 97;
+	
+	printf("Alphabets in parallel order ");
+
+	for(int i=0,j=0;i<=25;i++,j++)
+	{
+		printf("%c %c \n", capital,small);
+		capital++;
+		small++;
+	}
+
+	return 0;
+
+}
+
+
+
+
+PROGRAM 13 - WAP to display multiplication table for all numbers 2-5.
+
+#include <stdio.h>
+
+int main() {
+    int number,table;
+    
+    for (int j=2;j<=5;j++)
+    {
+        printf("\nMultiplication table of %d\n",j);
+        for (int i=1;i<=10;i++)
+        {
+            table=j*i;
+            printf("%d\n",table);
+        }
+    }
+    return 0;
+}
+
+
+
+
+PROGRAM 14 - WAP to find and display first 20 prime numbers.
+
+#include<stdio.h>
+
+int main()
+{
+	int number=2,count=20,flag;
+	printf("First 20 prime numbers : \n");
+
+	while(count>0)
+	{
+		flag=0;
+		for(int i=2;i<number;i++)
+		{
+			if (number%i==0)
+			{
+				flag=1;
+				break;
+			}
+			else
+			{
+				flag=0;
+			}
+		}
+		if (flag==0)
+		{
+		printf("%d  ",number);
+		count--;
+		}
+		number++;
+	}
+	return 0;
+}
+
+
+
+
+PROGRAM 15 - WAP to accept number from user and calculate length of the number and then check if the number is Armstrong number or not.
+
+#include<stdio.h>
+
+int main()
+{
+	int num, remainder,final_sum=0, arm_number, count, temp, temp2;
+	printf("Enter number : ");
+	scanf("%d",&num);
+	temp = num;
+	temp2 = num;
+	count=0;
+	
+	printf("Is armstrong number or not = ");
+	
+	while (temp != 0)
+	{
+		remainder = temp % 10;
+		temp = temp / 10;
+		count += 1;
+	}
+	
+	while (temp2 != 0)
+	{
+		remainder = temp2 % 10;
+		arm_number = 1;
+		for(int j=0; j<count;j++)
+		{
+			arm_number = arm_number * remainder;
+		}
+		final_sum += arm_number;
+		temp2 = temp2/10;
+	}
+	
+	if (num == final_sum)
+	{
+		printf("Yes");
+	}
+	else
+	{
+	    	printf("No");
+	}
+	
+	return 0;
+}
+
+
+
+PROGRAM 16 - WAP to accept number from user pass this function to calculate factorial of the number and print result back in main().
+
+#include<stdio.h>
+
+int fact(int);
+
+int main()
+{
+	int number;
+	printf("Enter a number to calculate factorial: ");
+	scanf("%d", &number);
+	printf("Result of factorial= %d ", fact(number));
+	return 0;
+}
+
+int fact(int number)
+{
+    int factorial_result,i;
+    factorial_result=1;
+	for(i=0;i<=number+1;i++)
+	{
+		factorial_result = number*factorial_result;
+		number--;
+	}
+	return factorial_result;
+}
+
