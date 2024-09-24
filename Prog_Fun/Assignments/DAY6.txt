@@ -1,0 +1,416 @@
+PROGRAM 1 - WAP to accept how many inputs are required from user. Allocate memory and then accept numbers from user one-by-one where you will be storing sum of digits in this allocated space. Display all results at end.
+eg: if input-3 then, accept 1st number immediately calculate its sum of digits and store result in array. Repeat this for all inputs, display all results at end like following example
+
+a) 123 - 6
+b) 456 - 15
+c) 743 - 14
+
+o/p: sum of digits from values are:: 6,15,14
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int row,col,i,j,**arr;
+	int *sum;
+	
+	printf("\nEnter count of number(Row) and Digit count(column) :: ");
+	scanf("%d %d",&row,&col);
+	
+	sum=(int*)malloc(row*sizeof(int));
+	
+	arr=(int**)malloc(row*sizeof(int*));
+	
+	for(i=0;i<row;i++)
+	{
+		arr[i]=(int*)malloc(col*sizeof(int));
+	}
+	
+	printf("\nEnter %d Elements :: \n",row*col);
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			scanf("%d",&arr[i][j]);
+		}
+	}
+	
+	printf("\nElements :: \n");
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			printf("%d",arr[i][j]);
+			printf("\t");
+		}
+		printf("\n");
+	}
+	
+	for(j=0;j<col;j++)
+	{
+		for(i=0;i<row;i++)
+		{
+			sum[i]+= arr[i][j];
+		}
+	}
+	
+	printf("\nSum of individual digits is \n");
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			printf("%d",arr[i][j]);
+			printf("\t");
+		}
+	    printf("-\t%d",sum[i]);
+		printf("\n");
+	}
+	
+	
+	for(i=0;i<row;i++)
+	{
+		free(arr[i]);
+	}
+	free(arr);
+	
+	free(sum);
+	
+	return 0;
+}
+
+
+
+
+
+
+PROGRAM 2 - WAP to accept size of matrixes from user. Allocate memory for 2D array. Accept and display matrixes values. Also calculate and display sum of matrixes.
+HINT: use functions (allocate, deallocate, accept, display, sum) And pass pointer-to-pointer from calling fucntion to called function and return this back to calling function
+
+eg:
+
+main()
+{ arrallocate(arr) //you can add arguments as per need
+} int allocate(int **arr)
+return arr;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int** allocate(int rows, int cols);
+void deallocate(int **matrix, int rows);
+void accept(int **matrix, int rows, int cols);
+void display(int **matrix, int rows, int cols);
+int** sum(int **matrix1, int **matrix2, int rows, int cols);
+
+int main() 
+{
+    int rows, cols;
+
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    int **matrix1 = allocate(rows, cols);
+    int **matrix2 = allocate(rows, cols);
+
+    printf("\nMatrix 1:\n");
+    accept(matrix1, rows, cols);
+
+    printf("\nMatrix 2:\n");
+    accept(matrix2, rows, cols);
+
+    printf("\nMatrix 1:\n");
+    display(matrix1, rows, cols);
+
+    printf("\nMatrix 2:\n");
+    display(matrix2, rows, cols);
+
+    int **sum_matrix = sum(matrix1, matrix2, rows, cols);
+
+    printf("\nSum of Matrix 1 and Matrix 2:\n");
+    display(sum_matrix, rows, cols);
+
+    deallocate(matrix1, rows);
+    deallocate(matrix2, rows);
+    deallocate(sum_matrix, rows);
+
+    return 0;
+}
+
+int** allocate(int rows, int cols) {
+    int **matrix = (int **)malloc(rows * sizeof(int *));
+    for (int i = 0; i < rows; i++) {
+        matrix[i] = (int *)malloc(cols * sizeof(int));
+    }
+    return matrix;
+}
+
+void deallocate(int **matrix, int rows) {
+    for (int i = 0; i < rows; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+}
+
+void accept(int **matrix, int rows, int cols) {
+    printf("Enter the values for the matrix (%d x %d):\n", rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+void display(int **matrix, int rows, int cols) {
+    printf("Matrix (%d x %d):\n", rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int** sum(int **matrix1, int **matrix2, int rows, int cols) {
+    int **result = allocate(rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+    return result;
+}
+
+
+
+
+
+
+5 DEMO programs from session -->
+
+
+POGRAM 3 - WAP to accept 1D array size and inputs from user using malloc() function and display array.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int size,*arr,i;
+	
+	printf("\nEnter size::");
+	scanf("%d",&size);
+	
+	arr=(int*)malloc(size*sizeof(int));
+	
+	printf("\nEnter Elements :: \n");
+	for(i=0;i<size;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	
+	printf("\nElements :: \n");
+	for(i=0;i<size;i++)
+	{
+		printf("%d ",arr[i]);
+	}
+	
+	free(arr);
+	 
+}
+
+
+
+
+
+POGRAM 4 - WAP to accept 1D array size and inputs from user using calloc() function and display array.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int size,*arr,i;
+	
+	printf("\nEnter size :: ");
+	scanf("%d",&size);
+	
+	arr=(int*)calloc(size,sizeof(int));
+	
+	printf("\nEnter Elements :: \n");
+	for(i=0;i<size;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	
+	printf("\nElements :: \n");
+	for(i=0;i<size;i++)
+	{
+		printf("%d ",arr[i]);
+	}
+	
+	free(arr);
+	 
+}
+
+
+
+
+
+
+POGRAM 5 - WAP to accept 1D array size and inputs from user using memory allocation concept and reallocate size and add elements. Display both array at the end.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int size,*arr,i,new_size;
+	
+	printf("\nEnter size::");
+	scanf("%d",&size);
+	
+	arr=(int*)malloc(size*sizeof(int));
+	
+	printf("\nEnter Elements :: \n");
+	for(i=0;i<size;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	
+	printf("\nElements :: \n");
+	for(i=0;i<size;i++)
+	{
+		printf("%d ",arr[i]);
+	}
+	printf("\n");
+	
+	printf("\nEnter new size :: \n");
+	scanf("%d",&new_size);
+	
+	arr = (int*)realloc(arr,(size+new_size)*sizeof(int));
+	
+	printf("\nEnter Elements :: \n");
+	for(i=size;i<size+new_size;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	
+	printf("\nElements :: \n");
+	for(i=0;i<size+new_size;i++)
+	{
+		printf("%d ",arr[i]);
+	}
+	printf("\n");
+	
+	free(arr);
+	 
+}
+
+
+
+
+
+
+
+POGRAM 6 - WAP to accept 2D array column size and inputs from user using memory allocation concept and display array. Row size is known - 3.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int row=3,col,i,j;
+	int *arr[row];
+	
+	printf("\nEnter column size::");
+	scanf("%d",&col);
+	
+	for(i=0;i<row;i++)
+	{
+		arr[i]=(int*)malloc(col*sizeof(int));
+	}
+	
+	printf("\nEnter %d Elements :: \n",row*col);
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			scanf("%d",&arr[i][j]);
+		}
+	}
+	
+	printf("\nElements :: \n");
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			printf("%d ",arr[i][j]);
+		}
+		printf("\n");
+	}
+	
+	
+	for(i=0;i<row;i++)
+	{
+		free(arr[i]);
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+POGRAM 7 - WAP to accept 2D array row size, column size and inputs from user using memory allocation concept and display array.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int row,col,i,j,**arr;
+	
+	printf("\nEnter row and column size::");
+	scanf("%d %d",&row,&col);
+	
+	arr=(int**)malloc(row*sizeof(int*));
+	
+	for(i=0;i<row;i++)
+	{
+		arr[i]=(int*)malloc(col*sizeof(int));
+	}
+	
+	printf("\nEnter %d Elements :: \n",row*col);
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			scanf("%d",&arr[i][j]);
+		}
+	}
+	
+	printf("\nElements :: \n");
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			printf("%d ",arr[i][j]);
+		}
+		printf("\n");
+	}
+	
+	
+	for(i=0;i<row;i++)
+	{
+		free(arr[i]);
+	}
+	free(arr);
+	return 0;
+}

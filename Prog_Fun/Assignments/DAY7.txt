@@ -1,0 +1,251 @@
+PROGRAM 1 - WAP to declare structure Bookbook_id, book_title, book_price} and using functions accept and display details. Also calculate and display final price by adding GST.
+
+#include<stdio.h>
+
+typedef struct book_details
+{
+	int book_id;
+	char book_title[20];
+	float book_price;
+}book;
+
+void accept(book *, int);
+void display(book *, int);
+void calculate(book *, int);
+
+
+int main()
+{
+	int i;
+	printf("enter size : ");
+	scanf("%d",&i);
+	book book_arr[i];
+	
+	accept(book_arr,i);
+	display(book_arr,i);
+	calculate(book_arr,i);
+	
+	return 0;
+}
+
+void accept(book *book_arr,int size)
+{
+	printf("Enter Book details: ");
+	for(int i=0;i<size;i++)
+	{
+		scanf("%d",&book_arr[i].book_id);
+		scanf("%f",&book_arr[i].book_price);
+		gets(book_arr[i].book_title);
+	}
+}
+
+void display(book *book_arr,int size)
+{
+	int i;
+	printf("Book details: \n");
+	for(i=0;i<size;i++)
+	{
+		printf("Book ID - %d\tBook Title - %s\tBook Price - %f\n\n",book_arr[i].book_id, book_arr[i].book_title, book_arr[i].book_price);
+	}
+}
+
+void calculate(book *book_arr,int size)
+{
+	float final_price;
+	float gst=0.18;
+	
+	for(int i=0;i<size;i++)
+	{
+		final_price=0;
+		final_price = (book_arr[i].book_price+(gst*book_arr[i].book_price));
+		//printf("%f\n",final_price);
+		printf("Final price of book - %s with book ID - %d is %f\n\n",book_arr[i].book_title, book_arr[i].book_id,final_price);
+	}
+}
+
+
+
+
+
+
+PROGRAM 2 - WAP to declare structure Student{eroll_no, stud_name, marks[ Accept and display details for 5 students. Calculate average every student. And end display 1st ranked student details. Make use of functions: accept, display, calculate_average, find Topper.
+
+#include<stdio.h>
+
+typedef struct student_details
+{
+	int roll_no;
+	char name[20];
+	float marks[3];
+}student;
+
+void accept(student *, int);
+void display(student *, int);
+void average(student *, int,float *);
+void find_topper(student *, int,float *);
+
+
+int main()
+{
+	
+	int i;
+	printf("enter size : ");
+	scanf("%d",&i);
+	printf("\n");
+	float avg[i];
+	student stud[i];
+	
+	accept(stud,i);
+	display(stud,i);
+	printf("\n\n");
+	average(stud,i,avg);
+	printf("\n\n");
+	find_topper(stud,i,avg);
+	return 0;
+}
+
+void accept(student *stud,int size)
+{
+	printf("Enter Student details: ");
+	for(int i=0;i<size;i++)
+	{
+		scanf("%d",&stud[i].roll_no);
+		for (int j=0;j<3;j++)
+		{
+			scanf("%f",&stud[i].marks[j]);
+		}
+		gets(stud[i].name);
+	}
+}
+
+void display(student *stud,int size)
+{
+	printf("\nStudent details: \n");
+	for(int i=0;i<size;i++)
+	{
+		printf("Roll no - %d\tName - %s\t",stud[i].roll_no, stud[i].name);
+		for (int j=0;j<3;j++)
+		{
+			 printf("Marks of sub %d : %.2f\t",j,stud[i].marks[j]);
+		}
+		printf("\n");
+	}
+}
+
+void average(student *stud,int size,float * avg)
+{
+	printf("Average Marks of students: \n");
+	for(int i=0;i<size;i++)
+	{
+		avg[i]=0;
+		for (int j=0;j<3;j++)
+		{
+			avg[i]+=stud[i].marks[j];
+		}
+		avg[i]=avg[i]/3;
+		printf("Average of student with roll no. - %d is %.2f\n",stud[i].roll_no,avg[i]);
+	}
+	return avg;
+}
+
+void find_topper(student *stud,int size,float * avg)
+{
+	int topper=0;
+	int high_marks=0;
+	for (int i=0;i<size;i++)
+	{
+		if (high_marks>avg[i])
+		{
+			continue;
+		}
+		else
+		{
+			high_marks=avg[i];
+			topper=i;
+			continue;
+		}
+	}
+	printf("Topper is Roll No. - %d\tname - %s\n",stud[topper].roll_no, stud[topper].name);
+}
+
+
+
+
+
+
+
+PROGRAM 3 - WAP to declare sturcture Employeee{emp_id, emp_name,emp_salary} accept no of employees from user, allocate memory at runtime. accept and display details for n employee. Use functions: allocate, de-allocate, accept, display.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct employee_details
+{
+	int id;
+	char name[20];
+	float salary;
+}emp;
+
+void allocate (emp *, int);
+void accept(emp *, int);
+void display(emp *, int);
+void deallocate (emp *,int);
+
+
+int main()
+{
+	int n;
+	emp eptr;
+	printf("Enter number of employees : ");
+	scanf("%d",&n);
+	
+	printf("\n");
+	allocate(&eptr,n);
+	printf("\n");
+	accept(&eptr,n);
+	printf("\n");
+	display(&eptr,n);
+	printf("\n");
+	deallocate(&eptr,n);
+	printf("\n");
+	
+	return 0;
+}
+
+void allocate (emp * eptr,int n)
+{
+	eptr = (emp*)malloc(n*sizeof(emp));
+}
+
+void accept(emp * eptr,int n)
+{
+	printf("Enter Employee details: ");
+	for(int i=0;i<n;i++)
+	{
+		scanf("%d",&eptr[i].id);
+		scanf("%f",&eptr[i].salary);
+		gets(eptr[i].name);
+	}
+}
+
+void display(emp * eptr,int n)
+{
+	printf("\nEmployee details: \n");
+	for(int i=0;i<n;i++)
+	{
+		printf("Employee ID - %d\tEmployee Name - %s\t Employee Salary - %.2f",eptr[i].id, eptr[i].name,eptr[i].salary);
+		printf("\n");
+	}
+}
+
+
+void deallocate (emp * eptr,int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		free(eptr);
+	}
+	free(eptr);
+}
+
+

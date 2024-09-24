@@ -1,0 +1,391 @@
+PROGRAM 1 - Write a program in C++ to accept number of subjects from user for 1 student and accept marks of all subjects. Display sum and average.
+
+#include<iostream>
+using namespace std;
+
+class score
+{
+	public :
+		score()
+		{
+			n=s=avg=0;
+			marks=new int[n];
+		}
+		
+		void subject()
+		{
+			cout<<"Enter number of subjects : ";
+			cin>>n;
+			cout<<endl;
+		}
+		void assignmarks()
+		{
+			for (int i=0;i<n;i++)
+			{
+				cout<<"Enter marks of subject "<<i<<" : ";
+				cin>>marks[i];
+			}
+			cout<<endl;
+		}
+		
+		void sum()
+		{
+			s = 0;
+			for (int i=0;i<n;i++)
+			{
+				s += marks[i];
+			}
+		}
+		
+		void average()
+		{
+			avg = s/n;
+		}
+		
+		void display()
+		{
+			for (int i=0;i<n;i++)
+			{
+				cout<<"Marks of subject "<<i<<" is : "<<marks[i]<<endl;
+			}
+			cout<<endl<<"Sum of total marks : "<<s<<endl;
+			cout<<endl<<"Average of marks : "<<avg<<endl<<endl;
+		}
+		
+		
+	
+	private : 
+		int n,s,avg;
+		int *marks=NULL;
+};
+
+int main()
+{
+	score stud;
+	
+	stud.subject();
+	stud.assignmarks();
+	stud.sum();
+	stud.average();
+	stud.display();
+	
+	return 0;
+}
+
+
+
+
+
+PROGRAM 2 - Write a program to allocate memory in C++ for 2D array. Accept row and col size from user and accept and display values.
+
+#include<iostream>
+using namespace std;
+
+class array2D
+{
+	public :
+		array2D()
+		{
+			r=c=0;
+			arr=NULL;
+		}
+		
+		void accept()
+		{
+			cout<<"Enter number of rows : ";
+			cin>>r;
+			cout<<endl;
+			cout<<"Enter number of columns : ";
+			cin>>c;
+			cout<<endl;
+			allocateMemory();
+		}
+		
+		void allocateMemory()
+		{
+			arr = new int*[r]; // Allocate rows
+			for (int i = 0; i < r; i++)
+			{
+				arr[i] = new int[c]; // Allocate columns
+			}
+		}
+
+		void assignvalues()
+		{
+			for (int i=0;i<r;i++)
+			{
+				for (int j=0;j<c;j++)
+				{
+					cout<<"Enter element of index ["<<i<<"] ["<<j<<"] : ";
+					cin>>arr[i][j];
+				}
+			}
+			cout<<endl;
+		}
+		
+		void display()
+		{
+			cout<<endl<<"Array : "<<endl;
+			for (int i=0;i<r;i++)
+			{
+				for (int j=0;j<c;j++)
+				{
+					cout<<arr[i][j]<<" ";
+				}
+				cout<<endl;
+			}
+			cout<<endl;
+		}
+		
+		
+	
+	private : 
+		int r,c;
+		int **arr=NULL;
+};
+
+int main()
+{
+	array2D data;
+	
+	data.accept();
+	data.assignvalues();
+	data.display();
+	
+	return 0;
+}
+
+
+
+
+
+
+
+PROGRAM 3 - Write a program to design class Time with data members (hh, mm Write appropriate member functions.
+
+#include<iostream>
+using namespace std;
+
+class Time
+{
+	public :
+		Time()
+		{
+			hh=mm=ss=0;
+		}
+		
+		void assigntime()
+		{
+			hh=14;
+			mm=50;
+			ss=40;
+		}
+		void displaytime()
+		{
+			cout<<"Time : "<<hh<<":"<<mm<<":"<<ss<<endl;
+		}
+		
+	private : 
+		int hh,mm,ss;
+};
+
+int main()
+{
+	Time t; 
+	
+	t.assigntime();
+	t.displaytime();
+	
+	return 0;
+}
+
+
+
+
+
+
+PROGRAM 4 - Create class Complex(int real, int imaginary) having appropriate constructors and accept and display functions.
+
+#include<iostream>
+using namespace std;
+
+class complex
+{
+	public :
+		complex()
+		{
+			real=imaginary=0;
+		}
+		
+		void acceptvalue()
+		{
+			cout<<"Enter real and imaginary value of complex number : ";
+			cin>>real>>imaginary;
+			cout<<endl;
+		}
+		void displayvalue()
+		{
+			cout<<"Complex number : "<<real<<"+"<<imaginary<<"i"<<endl;
+		}
+		
+	private : 
+		int real,imaginary; 
+};
+
+int main()
+{
+	complex c; 
+	
+	c.acceptvalue();
+	c.displayvalue();
+	
+	return 0;
+}
+
+
+
+
+
+
+
+PROGRAM 5 - Write a program that declares a string pointer initialized and then proceed to put the characters in reverse order. Do not create temporary string.
+
+#include <iostream>
+#include <cstring> 
+#include <string>  
+
+using namespace std;
+
+class StringReverser {
+public:
+    StringReverser(char* str) : str_(str), length_(strlen(str)) {}
+
+    void reverse() {
+        size_t start = 0;
+        size_t end = this->length_ - 1;
+        
+        while (start < end) {
+            this->str_[start] ^= this->str_[end];
+            this->str_[end] ^= this->str_[start];
+            this->str_[start] ^= this->str_[end];
+            ++start;
+            --end;
+        }
+    }
+
+private:
+    char* str_;
+    size_t length_;
+};
+
+int main() {
+    string input;
+    
+    cout << "Enter a string: ";
+    getline(cin, input);
+    
+    char str[input.size() + 1]; 
+    strcpy(str, input.c_str());
+    
+    cout << "Original String: " << str << endl;
+    
+    StringReverser reverser(str);
+    reverser.reverse();
+    
+    cout << "Reversed String: " << str << endl;
+    
+    return 0;
+}
+
+
+
+
+
+PROGRAM 6 - Write a program to design class Employee with members (emp_id, name, salary). Implement default and parametrized constructor, get() and set for all attributes.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee 
+{
+    private:
+        int emp_id;
+        string name;
+        float salary;
+    
+    public:
+        Employee() 
+        {
+            emp_id = 0;
+            name = "Unknown";
+            salary = 0.0;
+        }
+    
+        Employee(int id, string emp_name, float emp_salary) 
+        {
+            emp_id = id;
+            name = emp_name;
+            salary = emp_salary;
+        }
+    
+        void setEmpId(int id) 
+        {
+            emp_id = id;
+        }
+    
+        int getEmpId() 
+        {
+            return emp_id;
+        }
+    
+        void setName(string emp_name) 
+        {
+            name = emp_name;
+        }
+    
+        string getName() 
+        {
+            return name;
+        }
+    
+        void setSalary(float emp_salary) 
+        {
+            salary = emp_salary;
+        }
+    
+        float getSalary() 
+        {
+            return salary;
+        }
+    
+        void display() {
+            cout << "Employee ID: " << emp_id << endl;
+            cout << "Employee Name: " << name << endl;
+            cout << "Employee Salary: $" << salary << endl;
+        }
+};
+
+int main() 
+{
+    Employee emp1;
+    cout << "Employee 1 (Default Constructor):" << endl;
+    emp1.display();
+
+    Employee emp2(101, "John Doe", 50000);
+    cout << "\nEmployee 2 (Parameterized Constructor):" << endl;
+    emp2.display();
+
+    emp1.setEmpId(102);
+    emp1.setName("Alice Smith");
+    emp1.setSalary(60000);
+    cout << "\nEmployee 1 (After using setters):" << endl;
+    emp1.display();
+
+    cout << "\nAccessing Employee 2's details using getters:" << endl;
+    cout << "ID: " << emp2.getEmpId() << endl;
+    cout << "Name: " << emp2.getName() << endl;
+    cout << "Salary: $" << emp2.getSalary() << endl;
+
+    return 0;
+}

@@ -1,0 +1,33 @@
+PROGRAM 1 - Write a execute program to understand use of namespaces.
+
+
+
+
+
+PROGRAM 2 - Using C++ design user defined class string { int length, char * str_ptr } 
+
+a) Create default constructor, parametrized constructor, user-defined copy constructor, user defined destructor.
+
+
+
+b) overload operators::
+
+b.1) operator to concatenate 2 strings s1 = s1+s2,
+
+b.2) operator to check strings are same, b.3) <,> give lenghtwise strings difference
+
+b.4) operator[] to display character eg: String s1("hello"); char ch s1[1]; // O/P:: e
+
+b.5) operator << and >> to display and accept string resp.
+
+
+
+c) Check execution process and difference between following g statements:
+
+c.1) String s1, s2("hello"); 51 = 52;
+
+c.2) String s1("hello); String s2 s1;
+
+c.3) s1 s2 = 53
+
+ 

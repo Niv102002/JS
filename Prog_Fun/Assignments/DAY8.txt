@@ -1,0 +1,208 @@
+PROGRAM 1 - Accept no. of flowers from user and accept names of flowers and store all dynamically. And search if tulip flower is specified or not.
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() 
+{
+    int numFlowers;
+    
+    printf("Enter the number of flowers: ");
+    scanf("%d", &numFlowers);
+
+    char **flowers = (char **)malloc(numFlowers * sizeof(char *));
+    if (flowers == NULL) 
+    {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < numFlowers; i++) 
+    {
+        flowers[i] = (char *)malloc(100 * sizeof(char)); 
+        if (flowers[i] == NULL) 
+        {
+            printf("Memory allocation failed.\n");
+            for (int j = 0; j < i; j++) 
+            {
+                free(flowers[j]);
+            }
+            free(flowers);
+            return 1;
+        }
+
+        printf("Enter name of flower %d: ", i + 1);
+        scanf("%s", flowers[i]);
+    }
+
+    int found = 0;
+    for (int i = 0; i < numFlowers; i++) 
+    {
+        if (strcmp(flowers[i], "tulip") == 0) 
+        {
+            printf("Tulip is present in the list.\n");
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) 
+    {
+        printf("Tulip is not present in the list.\n");
+    }
+
+    for (int i = 0; i < numFlowers; i++) 
+    {
+        free(flowers[i]);
+    }
+    free(flowers);
+
+    return 0;
+}
+
+
+
+
+
+
+
+PROGRAM 2 - Generate a program for ordering pizza, where you must accept type of pizza from user according to menu displayed, coupon code if any but only one at a time.
+Display menu for extras with code: Price 10 for extra cheese, 20 extra roasting, 30 extra topping, 40 for extra veggies etc.
+Plus basic pizza price whatever customer ordered.
+Ask for coupon code and apply only one.
+Generate receipt after order complete and display order_id, receipt no., customer's name, mobile no., price of pizza, I Display at last total order price ending with smiles saying come again
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 100
+
+union Coupon {
+    float percentageDiscount;
+    int fixedDiscount;
+};
+
+struct CouponInfo {
+    char type; // 
+    union Coupon discount;
+};
+
+void displayMenu() {
+    printf("----- Pizza Menu -----\n");
+    printf("1. Margherita - $100\n");
+    printf("2. Pepperoni  - $150\n");
+    printf("3. Veggie     - $120\n");
+    printf("4. BBQ Chicken - $180\n");
+    printf("----------------------\n");
+}
+
+void displayExtras() {
+    printf("----- Extras Menu -----\n");
+    printf("1. Extra Cheese - $10\n");
+    printf("2. Extra Roasting - $20\n");
+    printf("3. Extra Toppings - $30\n");
+    printf("4. Extra Veggies - $40\n");
+    printf("----------------------\n");
+}
+
+void displayCoupons() {
+    printf("----- Available Coupons -----\n");
+    printf("DISCOUNT10 - 10%% off\n");
+    printf("DISCOUNT20 - 20%% off\n");
+    printf("FIXED50    - $50 off\n");
+    printf("----------------------------\n");
+}
+
+float applyCoupon(struct CouponInfo couponInfo, float totalPrice) {
+    if (couponInfo.type == 'P') {
+        return totalPrice * (1 - couponInfo.discount.percentageDiscount);
+    } else if (couponInfo.type == 'F') {
+        return totalPrice - couponInfo.discount.fixedDiscount;
+    }
+    return totalPrice; 
+}
+
+int main() {
+    int pizzaType, extra, extraCost = 0, orderId = 1001, receiptNo = 5001;
+    char couponCode[20], customerName[MAX], mobileNo[15];
+    float pizzaPrice = 0, totalPrice = 0;
+    struct CouponInfo couponInfo = {'\0', {0}}; 
+
+    printf("Enter your name: ");
+    gets(customerName); 
+
+    printf("Enter your mobile number: ");
+    gets(mobileNo); 
+
+    displayMenu();
+    printf("Choose the type of pizza (1-4): ");
+    scanf("%d", &pizzaType);
+
+    switch (pizzaType) {
+        case 1: pizzaPrice = 100; break;
+        case 2: pizzaPrice = 150; break;
+        case 3: pizzaPrice = 120; break;
+        case 4: pizzaPrice = 180; break;
+        default: printf("Invalid pizza choice.\n"); return 1;
+    }
+
+    displayExtras();
+    printf("Choose an extra (1-4, 0 for none): ");
+    scanf("%d", &extra);
+
+    switch (extra) {
+        case 1: extraCost = 10; break;
+        case 2: extraCost = 20; break;
+        case 3: extraCost = 30; break;
+        case 4: extraCost = 40; break;
+        case 0: extraCost = 0; break;
+        default: printf("Invalid extra choice.\n"); return 1;
+    }
+
+    displayCoupons();
+
+    printf("Enter coupon code (if any, else press Enter): ");
+    getchar(); 
+    gets(couponCode);
+    
+    if (strcmp(couponCode, "DISCOUNT10") == 0) {
+        couponInfo.type = 'P';
+        couponInfo.discount.percentageDiscount = 0.10; // 10% discount
+    } else if (strcmp(couponCode, "DISCOUNT20") == 0) {
+        couponInfo.type = 'P';
+        couponInfo.discount.percentageDiscount = 0.20; // 20% discount
+    } else if (strcmp(couponCode, "FIXED50") == 0) {
+        couponInfo.type = 'F';
+        couponInfo.discount.fixedDiscount = 50; // $50 off
+    }
+
+    totalPrice = pizzaPrice + extraCost;
+    totalPrice = applyCoupon(couponInfo, totalPrice);
+
+    printf("\n----- RECEIPT -----\n");
+    printf("Order ID: %d\n", orderId);
+    printf("Receipt No: %d\n", receiptNo);
+    printf("Customer Name: %s\n", customerName);
+    printf("Mobile No: %s\n", mobileNo);
+    printf("Pizza Price: $%.2f\n", pizzaPrice);
+    printf("Extras Price: $%d\n", extraCost);
+
+    if (couponInfo.type == 'P') {
+        printf("Discount Applied: %.0f%%\n", couponInfo.discount.percentageDiscount * 100);
+    } else if (couponInfo.type == 'F') {
+        printf("Discount Applied: $%d off\n", couponInfo.discount.fixedDiscount);
+    } else {
+        printf("No Discount Applied\n");
+    }
+
+    printf("Total Price: $%.2f\n", totalPrice);
+    printf("-------------------\n");
+    printf("Thank you! Come again :)\n");
+
+    return 0;
+}

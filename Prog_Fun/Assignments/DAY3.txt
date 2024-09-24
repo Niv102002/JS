@@ -1,0 +1,338 @@
+Recursion
+
+PROGRAM 1 - WAp using recursion to display numbers 10-1.
+
+#include<stdio.h>
+
+void display(int);
+int main()
+{
+	display(10);
+	return 0;
+}
+
+void display(int n)
+{ 
+	if (n!=0)
+	{
+		printf(" %d \n",n);
+		display(n-1);
+	}
+}
+
+
+
+
+
+PROGRAM 2 - WAp using recursion to find sum of numbers 1-10.
+
+#include<stdio.h>
+
+int sum(int,int);
+int main()
+{
+	sum(10,0);
+	return 0;
+}
+
+int sum(int n,int s)
+{ 
+	if (n>0)
+	{
+		s=s+n;
+		n--;
+		sum(n,s);
+	}
+	else
+	{
+		printf("Sum = %d\n",s);
+	}
+}
+
+
+
+
+
+PROGRAM 3 - WAp using recursion to find factorial of user entered number.
+
+#include<stdio.h>
+
+int fact(int,int);
+int main()
+{
+	int n,f=1;
+	printf("Enter number : ");
+	scanf("%d",&n);
+	fact(n,f);
+	return 0;
+}
+
+int fact(int n,int f)
+{ 
+	if (n>0)
+	{
+		f=f*n;
+		n--;
+		fact(n,f);
+	}
+	else
+	{
+		printf("Factorial = %d\n",f);
+	}
+}
+
+
+
+
+
+PROGRAM 4 - WAp using recursion to display Fibonacci series.
+
+#include<stdio.h>
+
+int fibonacci(int);
+int main()
+{
+	int n;
+	printf("Enter count for fibonacci series : ");
+	scanf("%d",&n);
+	printf("\nFibonacci series = ");
+	for (int i=0;i<n;i++)
+	{
+		printf("%d ",fibonacci(i));
+	}
+	return 0;
+}
+
+int fibonacci(int n)
+{ 
+	if (n==0)
+	{
+		return 0;
+	}
+	else if (n==1)
+	{
+		return 1;
+	}
+	else
+	{
+		return (fibonacci(n-1)+fibonacci(n-2));
+	}
+}
+
+
+
+
+
+PROGRAM 5 - WAp using recursion to calculate sum of digits for user entered number.
+
+#include<stdio.h>
+
+int sum(int,int);
+int main()
+{
+	int n,s=0;
+	printf("Enter limit for sum : ");
+	scanf("%d",&n);
+	sum(n,s);
+	return 0;
+}
+
+int sum(int n,int s)
+{ 
+	if (n>0)
+	{
+		s=s+n;
+		n--;
+		sum(n,s);
+	}
+	else
+	{
+		printf("Sum = %d\n",s);
+	}
+}
+
+
+
+
+----------------------------------------------------------------------------------------
+
+Pre-Processor
+
+PROGRAM 1 - WAP to find max of 2 numbers using ternary operator in macro.
+
+#include<stdio.h>
+
+#define MAX(n1,n2) n1>n2?n1:n2
+
+int main()
+{
+	int n1,n2;
+	printf("Enter two numbers to compare: ");
+	scanf("%d %d",&n1,&n2);
+	printf("Maximum number is : %d\n",MAX(n1,n2));
+	return 0;
+}
+
+
+
+
+
+PROGRAM 2 - WAP to find max of 3 numbers using ternary operator in macro.
+
+#include<stdio.h>
+
+#define MAX(n1,n2,n3) n1>n2?(n1>n3?n1:n3):(n2>n3?n2:n3)
+
+int main()
+{
+	int n1,n2,n3;
+	printf("Enter three numbers to compare: ");
+	scanf("%d %d %d",&n1,&n2,&n3);
+	printf("Maximum number is : %d\n",MAX(n1,n2,n3));
+	return 0;
+}
+
+
+
+
+
+PROGRAM 3 - WAP to accept character value from user in main() and using macro check if character is an alphabet or not.
+
+#include<stdio.h>
+
+#define ALPHA(n) (((n>='a' && n<='z') || (n>='A' && n<='Z'))?(printf("Yes\n")):(printf("No\n")))
+
+int main()
+{
+	char c;
+	printf("Enter Character to check if it is an alphabet or not: ");
+	scanf("%c",&c);
+	ALPHA(c);
+	return 0;
+}
+
+
+
+
+
+PROGRAM 4 - Calculate square of number and cube using macros. (Make use of nested macros for cube)
+
+#include<stdio.h>
+
+#define SQUARE(n) (n*n)
+#define CUBE(n) (SQUARE(n)*n)
+ 
+int main()
+{
+	int n;
+	printf("Enternumber : ");
+	scanf("%d",&n);
+	printf("Square of number %d is : %d\n",n,SQUARE(n));
+	printf("Cube of number %d is : %d\n",n,CUBE(n));
+	return 0;
+}
+
+
+
+
+
+PROGRAM 5 - Find sum of 2 numbers using macros.
+
+#include<stdio.h>
+
+#define SUM(n1,n2) n1+n2
+
+int main()
+{
+	int n1,n2;
+	printf("Enter two numbers to for addition : ");
+	scanf("%d %d",&n1,&n2);
+	printf("Addition of given 2 numbers is : %d\n",SUM(n1,n2));
+	return 0;
+}
+
+
+
+
+
+PROGRAM 6 - Find multiplication of numbers using macros.
+
+#include<stdio.h>
+
+#define MUL(n1,n2) n1*n2
+
+int main()
+{
+	
+	int n1,n2;
+	printf("Enter two numbers to for multiplication : ");
+	scanf("%d %d",&n1,&n2);
+	printf("Addition of given 2 numbers is : %d\n",MUL(n1,n2));
+	return 0;
+}
+
+
+
+
+PROGRAM 7 - Write a menu driven program to find area and perimeter for shapes circle, square, rectangle and triangle using macros.
+
+#include<stdio.h>
+
+#define PI 3.14
+
+#define AREA_C(radius) PI*radius*radius
+#define PERIMETER_C(radius) 2*PI*radius
+
+#define AREA_S(side) side*side
+#define PERIMETER_S(side) 4*side
+
+#define AREA_R(lenght,breadth) lenght*breadth
+#define PERIMETER_R(lenght,breadth) 2*(lenght+breadth)
+
+#define AREA_T(height,breadth_t) (0.5*height*breadth_t)
+#define PERIMETER_T(side1,side2,side3) (side1+side2+side3)
+
+
+int main() {
+    int case_value;
+    printf("Enter the number to calculate area/circumference and perimeter for required shape\n 1:Circle  2:Square  3:Rectangle  4:Triangle\n -->");
+    scanf("%d",&case_value);
+    
+    switch(case_value)
+    {
+        case 1:
+            float radius;
+            printf("Enter the radius of circle : ");
+            scanf("%f", &radius);
+            printf("The area of circle is %f and Perimeter is %f\n",AREA_C(radius),PERIMETER_C(radius));
+            break;
+            
+        case 2:
+            float side;
+            printf("Enter the side of square : ");
+            scanf("%f",&side);
+            printf("The area of Square is %f and Perimeter is %f\n",AREA_S(side),PERIMETER_S(side));
+            break;
+            
+        case 3:
+            float lenght,breadth;
+            printf("Enter the length and breadth of rectangle : ");
+            scanf("%f %f", &lenght,&breadth);
+            printf("The area of Rectangle is %f and Perimeter is %f\n",AREA_R(lenght,breadth),PERIMETER_R(lenght,breadth));
+            break;
+        
+        case 4:
+            float height,breadth_t,side1,side2,side3;
+            printf("Enter the height and breadth of triangle : ");
+            scanf("%f %f", &height,&breadth_t);
+            printf("Enter the 3 sides of triangle : ");
+            scanf("%f %f %f", &side1,&side2,&side3);
+            printf("The area of Triangle is %f and Perimeter of Triangle is %f\n",AREA_T(height,breadth_t),PERIMETER_T(side1,side2,side3));
+            break;
+            
+        default:
+            printf("Enter valid entry");
+    }
+    return 0;
+}
+

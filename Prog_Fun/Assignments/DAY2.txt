@@ -1,0 +1,369 @@
+PROGRAM 1 - Accept limit from user in main() and Calculate sum of numbers 1-limit using function. Print result in main.
+
+#include<stdio.h>
+
+int addition();
+
+int main()
+{
+	int limit,sum;
+	printf("Enter number as a limit : ");
+	scanf("%d",&limit);
+	
+	sum = addition(limit);
+	printf("Addition = %d",sum);
+	
+	return 0;
+}
+
+int addition(int num)
+{ 
+	int s=0;
+	for (int i=1;i<=num;i++)
+	{
+		s = s+i;
+	}
+	return s;
+}
+
+
+
+
+
+PROGRAM 2 - Accept number from user in main() and calculate square and cube using separate functions (call square() from cube.
+
+#include<stdio.h>
+
+int square();
+int cube();
+
+int main()
+{
+	int num;
+	printf("Enter number : ");
+	scanf("%d",&num);
+	
+	printf("square = %d\n",square(num));
+	printf("cube = %d",cube(num));
+	
+	return 0;
+}
+
+int square(int num)
+{ 
+	return num*num;
+}
+
+int cube(int num)
+{ 
+	return num*num*num;
+}
+
+
+
+
+
+PROGRAM 3 - Accept no from user in main using function check if it is Prime or not and return status to main. Print result in main().
+
+#include<stdio.h>
+
+int prime();
+
+int main()
+{
+	int num;
+	printf("Enter number : ");
+	scanf("%d",&num);
+	
+	printf("Is prime or not = ");
+	printf("%c\n",(prime(num)));
+	
+	return 0;
+}
+
+int prime(int num)
+{ 
+	int flag = 0;
+	for(int i=2;i<num;i++)
+	{
+		if (num%i==0)
+		{
+			flag=1;
+			break;
+		}
+		else
+		{
+			flag=0;
+		}
+	}
+	if (flag==0)
+	{
+		printf("Yes");
+	}
+	else
+	{
+		printf("No");
+	}
+}
+
+
+
+
+PROGRAM 4 - Accept no. from user in main() and using function check if it is armstrong number or not.
+
+#include<stdio.h>
+
+int armstrong(int);
+
+int main()
+{
+	int num;
+	printf("Enter number : ");
+	scanf("%d",&num);
+	
+	printf("Is armstrong number or not = ");
+	printf("%c\n",(armstrong(num)));
+	
+	return 0;
+}
+
+int armstrong(int num)
+{
+	int temp = num;
+	int temp2 = num;
+	int remainder,final_sum=0;
+	int arm_number;
+	
+	int count=0;
+	while (temp!=0)
+	{
+		remainder = temp%10;
+		//reverse = reverse*10+remainder;
+		temp = temp/10;
+		count+=1;
+	}
+	
+	while (temp2!=0)
+	{
+		
+		remainder = temp2%10;
+		arm_number=1;
+		for(int j = 0; j<count;j++)
+		{
+			arm_number = arm_number*remainder;
+		}
+		final_sum += arm_number;
+		temp2 = temp2/10;
+	}
+	
+	if (num == final_sum)
+	{
+		printf("Yes");
+	}
+	else
+	{
+	    	printf("No");
+	}
+}
+
+
+
+
+
+PROGRAM 5 - Accept limit from user in main() and using function print fibonacci series (eg: 0 1 1 2 3 5 7)
+
+#include<stdio.h>
+
+int fibonacci(int);
+int main()
+{
+	int limit;
+	printf("Enter limit for fibonacci series : ");
+	scanf("%d",&limit);
+	printf("\nFibonacci series = ");
+	fibonacci(limit);
+	return 0;
+}
+
+int fibonacci(int n)
+{ 
+	int a = 0, b = 1, next;
+    printf("%d %d ", a, b);
+
+    for (int i = 2; i < n; i++)
+    {
+        next = a + b;
+        printf("%d ", next);
+        a = b;  // Move `b` to `a`
+        b = next;  // Move `next` to `b`
+    }
+}
+
+
+
+
+PROGRAM 6 - Accept no from user in main using function check if it is palindrome number.
+
+#include<stdio.h>
+
+int palindrome(int);
+
+int main()
+{
+	int num;
+	printf("Enter number : ");
+	scanf("%d",&num);
+	
+	printf("Is palindrome number or not = ");
+	printf("%c\n",(palindrome(num)));
+	
+	return 0;
+}
+
+int palindrome(int num)
+{ 
+	int temp = num;
+	int reverse=0,remainder;
+	while (temp!=0)
+	{
+		remainder = temp%10;
+		reverse = reverse*10+remainder;
+		temp = temp/10;
+	}
+	    
+	if (num == reverse)
+	{
+		printf("Yes");
+	}
+	else
+	{
+	    	printf("No");
+	}
+}
+
+
+
+
+PROGRAM 7 - Accept date from user in main in dd/mm/yy format and using function check if date is valid or not.
+
+#include <stdio.h>
+int date_form(int,int,int);
+int main() {
+    int dd,mm,yyyy;
+    printf("Enter date");
+    scanf("%02d/%02d/%d",&dd,&mm,&yyyy);
+    date_form(dd,mm,yyyy);
+    return 0;
+}
+int date_form(int dd, int mm, int yyyy)
+{
+    if((dd>=1 && dd<=31)&&(mm>=1 && mm<=12)&&(yyyy>=1000 && yyyy <= 2024))
+    {
+        printf("Valid Date");
+    }
+    else
+    {
+        printf("Invalid Date");
+    }
+}
+
+
+-------------------------------------------------------------------------------------------
+Pointers
+
+PROGRAM 1 - Accept 2 numbers in main, swap them using user-defined function Swap() and print swapped values in main.
+
+#include<stdio.h>
+
+int swap(int*,int*);
+
+int main()
+{
+	int num1,num2;
+	printf("Enter numbers : ");
+	scanf("%d %d",&num1,&num2);
+	
+	printf("Before Swapping : \n num1 = %d   num2 = %d\n",num1,num2);
+	
+	printf("After Swapping : \n");
+	swap(&num1,&num2);
+	printf("num1 = %d  num2 = %d\n",num1,num2);
+	return 0;
+}
+
+int swap(int *a, int *b)
+{ 
+	int temp;
+	temp=*a;
+	*a=*b;
+	*b=temp;
+	
+	return *a,*b;
+}
+
+
+
+
+PROGRAM 2 - Accept radius from user in main and using single function calculate area and circumference of a circle and print both results in main().
+
+#include <stdio.h>
+#define PI 3.14
+float circle_parameters(float*, float*,float*);
+void main() {
+    float rad,area,circum;
+    //int *r;
+    printf("Enter the radius: ");
+    scanf("%f",&rad);
+    //r=&rad;
+    circle_parameters(&rad,&area,&circum);
+    printf("Area = %f Perimeter = %f ",area,circum);
+    
+    //return 0;
+}
+
+float circle_parameters(float*r, float*area,float*circum)
+{
+    float rad;
+    //float *ar,*cr; 
+    rad = *r;
+    *area = (PI*rad*rad);
+    *circum = (PI*2*rad);
+    //*area = ar;
+    //*cir = cr;
+    //return 0;
+}
+
+
+
+
+PROGRAM 3 - Accept limit from user in main() and using single function calculate sum of all odd numbers and sum of all even bet 1-limit and print both results in main()
+
+#include <stdio.h>
+int sum_alt(int,int*,int*);
+int main() {
+    int sum_odd, sum_even;
+    int limit;
+    printf("Enter a Limit ");
+    scanf("%d",&limit);
+    sum_alt(limit,&sum_odd,&sum_even);
+    printf("odd sum = %d  even sum = %d", sum_odd,sum_even);
+    return 0;
+}
+int sum_alt(int limit,int *so,int *se)
+{   int sumo=0, sume=0;
+    for(int i=0;i<=limit;i++)
+    {
+        if(i%2==0)
+        {
+            sume += i;
+        }
+        else
+        {
+            sumo += i;
+        }
+    }
+    *so = sumo;
+    *se = sume;
+}
+
+
