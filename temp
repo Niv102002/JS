@@ -1,0 +1,26 @@
+omplex
+
+cout cin
+
+friend istream& operator>>(istream&in,complex &);
+friend ostream& operator<<(ostream&out,complex &);
+
+
+friend istream& operator<<(istream&in,complex &c)
+{
+    cout<<"Enter real and imgaginary part: "<<endl;
+    in>>c.real>>c.imag;
+}
+friend ostream& operator>>(ostream&out,complex &c)
+{
+    out<<"The real part is "<<c.real<<" and "<< "the imaginary part is "<<c.imag; 
+}
+
+
+
+
+complex c1;
+	cin>>c1;
+	cout<<c1;
+	cout<<"c1 : ";
+	c1.display();

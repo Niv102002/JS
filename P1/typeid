@@ -1,0 +1,11 @@
+ManagerEmp *mptr=NULL;
+    		if (typeid(*mptr)==typeid(class ManagerEmp))
+    		{
+    			cout<<"\nObject created : "<<typeid(*mptr).name();
+    			dynamic_cast<ManagerEmp*>(mptr)->Bonus();
+    		}
+    		else
+    		{
+    			cout<<"\nObject of manager not created";
+    		}
+    		break;
